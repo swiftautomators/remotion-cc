@@ -1,6 +1,142 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+# Dre Builds - Programmatic Short-Form Content Engine
+
+## Project Overview
+
+This is the **Dre Builds** content generation system - a programmatic video production pipeline using Remotion to create viral AI automation tutorials for 8 social platforms.
+
+## Mission
+
+Bridge the gap between powerful AI tools and “normal people” through 20-30 second videos delivering **radical efficiency**.
+
+## Core Skills (7 Total)
+
+|Skill                    |Purpose                                    |
+|-------------------------|-------------------------------------------|
+|`dre-builds-orchestrator`|Master controller, coordinates all skills  |
+|`remotion-core`          |Remotion fundamentals, schema, compositions|
+|`remotion-templates`     |3 viral templates (A, B, C)                |
+|`remotion-captions`      |Kinetic typography, Hormozi-style captions |
+|`platform-distribution`  |Multi-platform rendering & optimization    |
+|`content-pipeline`       |Ideation, scripting, 75-word limit         |
+|`voice-synthesis`        |ElevenLabs voiceover generation            |
+
+## Quick Start Commands
+
+```bash
+# Generate video from idea
+python scripts/generate-video.py --idea "How to automate emails with AI"
+
+# Render for all platforms
+./scripts/render-all-platforms.sh props.json
+
+# Single platform render
+npx remotion render DreBuilds-Vertical out/video.mp4 --props=props.json
+```
+
+## Brand Guidelines
+
+### Design System: “Clean Automation”
+
+**Colors:**
+
+- Background: `#0F172A` (Slate 900)
+- Text: `#F8FAFC` (Slate 50)
+- Accent: `#4ADE80` (Green 400)
+- Alert: `#FBBF24` (Amber 400)
+- Tech: `#38BDF8` (Sky 400)
+
+**Typography:**
+
+- Narrative: Inter (600, 800)
+- Technical: JetBrains Mono (500)
+
+### Viral Formula: Hook-Retain-Reward
+
+```
+0-3s   [HOOK]   → < 5 words + visual result/pain
+3-25s  [RETAIN] → Demo at 1.5x with dynamic captions
+25-30s [REWARD] → CTA + loop back to start
+```
+
+## Template Selection
+
+|Signal              |Template              |
+|--------------------|----------------------|
+|Pain point, “stop X”|A: Pain → Solution    |
+|Connect, integrate  |B: Impossible Workflow|
+|Top tools, list     |C: Listicle Speedrun  |
+
+## Quality Gates
+
+Before ANY render:
+
+- [ ] Hook ≤ 5 words
+- [ ] Script ≤ 75 words
+- [ ] Duration 20-30 seconds
+- [ ] Captions in safe zones
+- [ ] End loops to beginning
+- [ ] Tool URL verified
+
+## Platform Dimensions
+
+|Format          |Platforms                        |Composition       |
+|----------------|---------------------------------|------------------|
+|9:16 (1080×1920)|TikTok, YouTube, Reels, Pinterest|DreBuilds-Vertical|
+|4:5 (1080×1350) |LinkedIn, Instagram Feed         |DreBuilds-Portrait|
+|1:1 (1080×1080) |Twitter, Facebook                |DreBuilds-Square  |
+
+## Agent Workflow
+
+When user provides content idea:
+
+1. **Analyze input** → Detect template (A/B/C)
+1. **Generate script** → 75 words max, Hook-Retain-Reward
+1. **Create schema** → DreBuildsSchema JSON
+1. **Voice synthesis** → ElevenLabs API
+1. **Caption generation** → Whisper transcription
+1. **Multi-platform render** → 8 platform variants
+
+## Repository Structure
+
+```
+remotion-cc/
+├── src/
+│   ├── Root.tsx              # Composition definitions
+│   ├── schema.ts             # Zod schema
+│   ├── templates/
+│   │   ├── TemplateA.tsx     # Pain Point → Solution
+│   │   ├── TemplateB.tsx     # Impossible Workflow
+│   │   └── TemplateC.tsx     # Listicle Speedrun
+│   └── components/
+│       ├── SafeZone.tsx      # Platform safe areas
+│       ├── KineticCaption.tsx # Animated captions
+│       └── KenBurnsImage.tsx # Motion for stills
+├── public/
+│   ├── music/                # Background tracks
+│   └── vo/                   # Voiceovers
+├── scripts/
+│   ├── generate-video.py     # End-to-end generation
+│   └── render-all-platforms.sh
+└── out/                      # Rendered videos
+```
+
+## Environment Variables
+
+```bash
+ELEVENLABS_API_KEY=your-key  # Voice synthesis
+OPENAI_API_KEY=your-key      # Whisper transcription (optional)
+```
+
+## Key Constraints
+
+1. **Script Length**: Never exceed 75 words
+1. **Hook Length**: Never exceed 5 words
+1. **Duration**: Always 20-30 seconds
+1. **Captions**: Always visible, never in danger zones
+1. **Motion**: No static frames - Ken Burns on screenshots
+1. **Looping**: End must flow into beginning
 
 **Note**: This project uses [AGENTS.md](AGENTS.md) files for detailed guidance.
 
